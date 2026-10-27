@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F.S. Launcher | Professional Rescue Equipment</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.launcher-page {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .launcher-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: #0b0b0b;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .launcher-nav .brand {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .launcher-nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin: 0; padding: 0;
+        }
+        .launcher-nav ul li a {
+            color: #888;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .launcher-nav ul li a:hover {
+            color: #e63946;
+        }
+
+        .launcher-hero {
+            position: relative;
+            height: 85vh;
+            background-image: url('images/launcher-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 60px;
+        }
+        .launcher-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(11, 11, 11, 0.95) 0%, rgba(11, 11, 11, 0.3) 60%);
+        }
+        .launcher-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .launcher-hero-content .subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            color: #e63946;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 700;
+        }
+        .launcher-hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+        .launcher-hero-content p {
+            font-size: 1.15rem;
+            color: #b0b0b0;
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .action-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #e63946;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 0;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .action-btn:hover {
+            background: #ff4d5a;
+        }
+
+        .launcher-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 60px;
+        }
+
+        .section-header {
+            border-left: 3px solid #e63946;
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            margin-bottom: 8px;
+        }
+        .section-header p {
+            color: #888;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* 선화 도면 및 정식 제원 스펙 표 그리드 */
+        .blueprint-section {
+            margin-bottom: 120px;
+        }
+        .blueprint-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .blueprint-visual {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #141414;
+            padding: 20px;
+        }
+        .spec-table-box {
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+        }
+        .spec-table-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .spec-table {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+        .spec-row .label {
+            color: #666;
+            font-size: 0.85rem;
+            font-family: monospace;
+            text-transform: uppercase;
+        }
+        .spec-row .value {
+            color: #e63946;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: monospace;
+        }
+
+        /* 실전 운용 시나리오 섹션 */
+        .action-scene-section {
+            margin-bottom: 120px;
+        }
+        .action-scene-visual {
+            width: 100%;
+            height: 520px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 30px;
+        }
+        .action-scene-desc {
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+        }
+        .action-scene-desc h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .action-scene-desc p {
+            color: #aaa;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* 가로로 긴 메커니즘 및 스케치 뷰 (비율 깨짐 방지용 와이드 스타일) */
+        .wide-tech-section {
+            margin-bottom: 120px;
+        }
+        .wide-tech-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #141414;
+            margin-bottom: 25px;
+        }
+        .wide-tech-desc {
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+        }
+        .wide-tech-desc h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .wide-tech-desc p {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* 하단 3분할 디테일 갤러리 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .gallery-box {
+            height: 320px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #141414;
+            transition: border-color 0.3s;
+        }
+        .gallery-box:hover {
+            border-color: #e63946;
+        }
+
+        .page-bottom {
+            text-align: center;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 60px;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #fff;
+            color: #0b0b0b;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 0;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background: #e63946;
+            color: #fff;
+        }
+
+        @media (max-width: 1024px) {
+            .blueprint-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .launcher-hero-content h1 { font-size: 3rem; }
+            .launcher-nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body class="launcher-page">
+
+    <header class="launcher-nav">
+        <div class="brand"><a href="index.html" style="color: #fff; text-decoration: none;">F.S. LABS</a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#blueprint">Blueprint</a></li>
+                <li><a href="#action-scene">Deployment</a></li>
+                <li><a href="#mechanism">Mechanism</a></li>
+                <li><a href="#details">Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="launcher-hero">
+        <div class="launcher-hero-content">
+            <span class="subtitle">Professional Rescue Equipment Project</span>
+            <h1>Fire Suppression Launcher</h1>
+            <p>Extreme conditions demand precise mechanics. Engineered for rapid deployment and maximum safety in high-risk disaster zones.</p>
+            <a href="#blueprint" class="action-btn">View Technical Data</a>
+        </div>
+    </section>
+
+    <main class="launcher-main">
+        
+        <!-- 1. 선화 도면(7.jpg) 및 정식 제원 스펙 표 (860mm 등 반영) -->
+        <div class="blueprint-section" id="blueprint">
+            <div class="section-header">
+                <h2>TECHNICAL SPECIFICATIONS & BLUEPRINT</h2>
+                <p>Dimensional Analysis & General Specs</p>
+            </div>
+            
+            <div class="blueprint-grid">
+                <img src="images/launcher-blueprint.jpg" alt="Launcher Blueprint" class="blueprint-visual">
+                
+                <div class="spec-table-box">
+                    <h3>System Parameters</h3>
+                    <div class="spec-table">
+                        <div class="spec-row">
+                            <span class="label">OVERALL LENGTH</span>
+                            <span class="value">860 mm</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label">HEIGHT</span>
+                            <span class="value">165 mm</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label">WIDTH</span>
+                            <span class="value">80 mm</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label">WEIGHT</span>
+                            <span class="value">3.8 kg (empty)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label">AMMO CAPACITY</span>
+                            <span class="value">8 rounds</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label">CAPSULE DIAMETER</span>
+                            <span class="value">40 mm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 실전 운용 시나리오 섹션 (6.jpg) -->
+        <div class="action-scene-section" id="action-scene">
+            <div class="section-header">
+                <h2>OPERATIONAL DEPLOYMENT</h2>
+                <p>Real-world Disaster Zone Scenario</p>
+            </div>
+            
+            <div class="action-scene-visual" style="background-image: url('images/launcher-action.jpg');"></div>
+            
+            <div class="action-scene-desc">
+                <h3>High-Risk Environment Response</h3>
+                <p>재난 현장의 최전선에서 소방대원이 신속하게 장비를 거치하고 타겟을 조준하는 실전 운용 상황입니다. 극한의 연기와 화염 속에서도 직관적으로 작동하도록 설계된 인체공학적 조작계를 보여줍니다.</p>
+            </div>
+        </div>
+
+        <!-- 3. 메커니즘 및 설계 스케치 (비율 깨짐 없는 와이드 이미지 배치) -->
+        <div class="section-header" id="mechanism">
+            <h2>MECHANICAL ARCHITECTURE & SKETCHES</h2>
+            <p>Kinematics & Form Study</p>
+        </div>
+
+        <!-- 4.jpg: 개머리판 전개 과정 (와이드형태로 비율 보존) -->
+        <div class="wide-tech-section">
+            <img src="images/launcher-mechanism.jpg" alt="Stock Deployment Kinematics" class="wide-tech-img">
+            <div class="wide-tech-desc">
+                <h3>Stock Deployment Kinematics</h3>
+                <p>개머리판(Stock)의 폴딩 및 디플로잉 메커니즘을 통해 휴대성을 높이고, 현장 전개 시 신속하게 고정될 수 있도록 설계된 기구부 구조야.</p>
+            </div>
+        </div>
+
+        <!-- 5.jpg: 컴포넌트 형태 스케치 (와이드형태로 비율 보존) -->
+        <div class="wide-tech-section">
+            <img src="images/launcher-sketch.jpg" alt="Component Form Study" class="wide-tech-img">
+            <div class="wide-tech-desc">
+                <h3>Component Form Study</h3>
+                <p>주요 조작부 및 모듈러 결합 부위의 정밀한 형태 스케치로, 공학적 타당성과 조형적 완성도를 동시에 검토한 결과물이지.</p>
+            </div>
+        </div>
+
+        <!-- 4. 하단 3분할 디테일 갤러리 -->
+        <div class="section-header" id="details" style="margin-top: 120px;">
+            <h2>INTERFACE, AMMUNITION & TARGETING HUD</h2>
+            <p>Precision Controls, Magazine & Digital Sight System</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-box" style="background-image: url('images/launcher-detail1.jpg');"></div>
+            <div class="gallery-box" style="background-image: url('images/launcher-detail2.jpg');"></div>
+            <div class="gallery-box" style="background-image: url('images/launcher-hud.jpg');"></div>
+        </div>
+
+        <div class="page-bottom">
+            <a href="portfolio.html" class="back-link">← Return to Portfolio Index</a>
+        </div>
+    </main>
+
+    <footer style="background: #070707; padding: 40px; text-align: center; color: #555; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="margin: 0 0 10px 0;">Email: ghenwlwl@naver.com | GitHub: github.com/rich24945316-oss</p>
+        <p style="margin: 0;">© 2026 Park Ji Beom. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

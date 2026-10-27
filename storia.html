@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STORIA | Luxury Super Yacht</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.storia-yacht-page {
+            background-color: #050b14;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-image: none;
+        }
+
+        .yacht-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: #050b14;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .yacht-nav .brand {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .yacht-nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin: 0; padding: 0;
+        }
+        .yacht-nav ul li a {
+            color: #a0aec0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .yacht-nav ul li a:hover {
+            color: #fff;
+        }
+
+        .yacht-hero {
+            position: relative;
+            height: 85vh;
+            background-image: url('images/storia2.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 60px;
+        }
+        .yacht-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(5, 11, 20, 0.9) 0%, rgba(5, 11, 20, 0.2) 60%);
+        }
+        .yacht-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .yacht-hero-content .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.25em;
+            color: #d4af37;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 600;
+        }
+        .yacht-hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            font-family: '명조', serif;
+        }
+        .yacht-hero-content p {
+            font-size: 1.2rem;
+            color: #cbd5e0;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .inquiry-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 0;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .inquiry-btn:hover {
+            background: #fff;
+            color: #050b14;
+        }
+
+        .yacht-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 60px;
+        }
+
+        .section-header {
+            border-left: 3px solid #d4af37;
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            color: #a0aec0;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        .wide-spec-section {
+            margin-bottom: 120px;
+        }
+        
+        /* 2171x545 비율(약 4:1)의 초장축 이미지가 잘림 없이 통째로 담기도록 <img> 태그 활용 및 비율 최적화 */
+        .wide-visual-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 30px;
+            background: #0a111d;
+        }
+
+        .spec-info-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .spec-data-box {
+            background: #0a111d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .spec-data-box h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .spec-data-box p {
+            color: #a0aec0;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .spec-table {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #0a111d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+        .spec-row .label {
+            color: #718096;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .spec-row .value {
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .gallery-box {
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s;
+        }
+        .gallery-box:hover {
+            border-color: #d4af37;
+        }
+
+        .page-bottom {
+            text-align: center;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 60px;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #fff;
+            color: #050b14;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 0;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background: #d4af37;
+            color: #fff;
+        }
+
+        @media (max-width: 1024px) {
+            .spec-info-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .yacht-hero-content h1 { font-size: 3rem; }
+            .yacht-nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body class="storia-yacht-page">
+
+    <header class="yacht-nav">
+        <div class="brand"><a href="index.html" style="color: #fff; text-decoration: none;">STORIA YACHTS</a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#specs">Specifications</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="yacht-hero">
+        <div class="yacht-hero-content">
+            <span class="subtitle">Conceptual Styling Project</span>
+            <h1>STORIA SUPER YACHT</h1>
+            <p>Beyond luxury, into your own private horizon. Experience the absolute pinnacle of marine architecture and custom styling.</p>
+            <a href="#specs" class="inquiry-btn">Explore Specifications</a>
+        </div>
+    </section>
+
+    <main class="yacht-main">
+        
+        <!-- 1. Architectural Overview (초장축 와이드 이미지 태그 적용) -->
+        <div class="wide-spec-section" id="specs">
+            <div class="section-header">
+                <h2>ARCHITECTURAL OVERVIEW</h2>
+                <p>Exterior Design & Concept Philosophy</p>
+            </div>
+
+            <!-- 배경 대신 <img> 태그를 사용하여 원본 비율(2171x545) 그대로 찌그러짐 없이 출력 -->
+            <img src="images/storia-side.jpg" alt="Storia Side View" class="wide-visual-img">
+
+            <div class="spec-info-grid">
+                <div class="spec-data-box">
+                    <h3>Design Philosophy</h3>
+                    <p>
+                        STORIA는 트라이마란(Trimaran) 구조를 기반으로 설계되어 항해 시 압도적인 안정감과 넓은 갑판 면적을 제공합니다. 클래식한 곡선미와 모던한 스퀘어 엣지의 조화가 특징이며, 수평선과 맞닿는 유려한 볼륨감을 선사합니다.
+                    </p>
+                </div>
+                <div class="spec-table">
+                    <div class="spec-row">
+                        <span class="label">Overall Length</span>
+                        <span class="value">75.0 m</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="label">Beam (Width)</span>
+                        <span class="value">22.0 m</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="label">Height</span>
+                        <span class="value">16.0 m</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="label">Draft</span>
+                        <span class="value">3.5 m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Performance & Deck Layout -->
+        <div class="wide-spec-section">
+            <div class="section-header">
+                <h2>PERFORMANCE & DECK LAYOUT</h2>
+                <p>High-Speed Cruising & Onboard Amenities</p>
+            </div>
+
+            <!-- 이 부분도 동일하게 비율 유지형 이미지 태그 적용 (원한다면 storia-top.jpg로 교체 가능) -->
+            <img src="images/storia-top.jpg" alt="Storia Deck Layout" class="wide-visual-img">
+
+            <div class="spec-info-grid">
+                <div class="spec-data-box">
+                    <h3>Engineering & Performance</h3>
+                    <p>
+                        최고 속력 35노트의 강력한 주행 성능을 뒷받침하는 유선형 선체 설계와 함께, 헬리패드 및 인피니티 풀이 유기적으로 배치된 5개 층의 럭셔리 데크 구성을 완성했습니다
+                    </p>
+                </div>
+                <div class="spec-table">
+                    <div class="spec-row">
+                        <span class="label">Maximum Speed</span>
+                        <span class="value">35 Knots</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="label">Passenger Capacity</span>
+                        <span class="value">15 Persons</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="label">Decks</span>
+                        <span class="value">5 Levels</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="label">Hull Structure</span>
+                        <span class="value">Trimaran Composite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 하단 갤러리 -->
+        <div class="section-header" id="gallery" style="margin-top: 120px;">
+            <h2>VESSEL GALLERY</h2>
+            <p>Detailed Views of Exterior & Lighting</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-box" style="background-image: url('images/storia-detail1.jpg');"></div>
+            <div class="gallery-box" style="background-image: url('images/storia-detail2.jpg');"></div>
+            <div class="gallery-box" style="background-image: url('images/storia-detail3.jpg');"></div>
+        </div>
+
+        <div class="page-bottom">
+            <a href="portfolio.html" class="back-link">← Return to Portfolio Index</a>
+        </div>
+    </main>
+
+    <footer style="background: #03070d; padding: 40px; text-align: center; color: #718096; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="margin: 0 0 10px 0; color: #718096;">Email: ghenwlwl@naver.com | GitHub: github.com/rich24945316-oss</p>
+        <p style="margin: 0; color: #718096;">© 2026 Park Ji Beom. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

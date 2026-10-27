@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAEDEULMUN | Milyang Tollgate Landscape Design</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.haedeulmun-page {
+            background-color: #f7f7f5;
+            color: #2b2b2b;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-image: none;
+        }
+
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5df;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .project-nav .brand {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            color: #111;
+            text-transform: uppercase;
+        }
+        .project-nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin: 0; padding: 0;
+        }
+        .project-nav ul li a {
+            color: #666;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .project-nav ul li a:hover {
+            color: #111;
+        }
+
+        /* 메인 히어로 배너 */
+        .project-hero {
+            position: relative;
+            height: 80vh;
+            background-image: url('images/haedeulmun-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 60px;
+        }
+        .project-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 60%);
+        }
+        .project-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            color: #fff;
+        }
+        .project-hero-content .subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            color: #d1b18d;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 600;
+        }
+        .project-hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 15px;
+        }
+        .project-hero-content p {
+            font-size: 1.15rem;
+            color: #e2e2df;
+            max-width: 600px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .project-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 60px;
+        }
+
+        .section-header {
+            border-left: 3px solid #2b2b2b;
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+            color: #111;
+        }
+        .section-header p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* 콘셉트 및 철학 레이아웃 */
+        .concept-block {
+            margin-bottom: 120px;
+        }
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .concept-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111;
+        }
+        .concept-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .concept-img {
+            height: 420px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #e2e2df;
+        }
+
+        /* 형태 프로세스 섹션 */
+        .process-block {
+            margin-bottom: 120px;
+        }
+        .process-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #e2e2df;
+            background: #fff;
+            margin-bottom: 30px;
+        }
+        .process-desc {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 900px;
+        }
+
+        /* 야간 조명 및 공간 갤러리 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .gallery-box {
+            height: 380px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #e2e2df;
+        }
+
+        .page-bottom {
+            text-align: center;
+            margin-top: 100px;
+            border-top: 1px solid #e5e5df;
+            padding-top: 60px;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #111;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .back-link:hover {
+            background: #555;
+        }
+
+        @media (max-width: 1024px) {
+            .concept-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .project-hero-content h1 { font-size: 3rem; }
+            .project-nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body class="haedeulmun-page">
+
+    <header class="project-nav">
+        <div class="brand"><a href="index.html" style="color: #111; text-decoration: none;">PARK JI BEOM</a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#concept">Concept</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <span class="subtitle">Spatial & Landscape Design Project</span>
+            <h1>해들문 (HAEDEULMUN)</h1>
+            <p>빛의 관문, 영남루를 품다 — 밀양 톨게이트 경관 개선 디자인</p>
+        </div>
+    </section>
+
+    <main class="project-main">
+        
+        <!-- 1. 디자인 철학 및 콘셉트 -->
+        <div class="concept-block" id="concept">
+            <div class="section-header">
+                <h2>DESIGN PHILOSOPHY</h2>
+                <p>Tradition meets Modernity</p>
+            </div>
+            <div class="concept-grid">
+                <div class="concept-text">
+                    <h3>밀양의 역사적 결을 품은 상징적 관문</h3>
+                    <p>
+                        '해들문'은 밀양을 방문하는 이들에게 지역의 아이덴티티를 각인시키기 위한 공공 경관 조형물 프로젝트입니다. 한국 전통 건축의 처마 곡선과 영남루의 유려한 조형미를 현대적인 기하학적 패턴으로 재해석하여, 단순한 톨게이트를 넘어 하나의 예술적 관문으로 연출했습니다.
+                    </p>
+                    <p>
+                        빛(光), 율동(律), 기운(氣)이라는 세 가지 디자인 키워드를 바탕으로 운전자에게 시각적 즐거움과 편안한 인상을 선사합니다.
+                    </p>
+                </div>
+                <div class="concept-img" style="background-image: url('images/haedeulmun-hero.jpg');"></div>
+            </div>
+        </div>
+
+        <!-- 2. 형태 도출 프로세스 -->
+        <div class="process-block" id="process">
+            <div class="section-header">
+                <h2>FORM EVOLUTION PROCESS</h2>
+                <p>From Concept to Structure</p>
+            </div>
+            <!-- 형태 프로세스 도면/다이어그램 이미지 -->
+            <img src="images/haedeulmun-process.jpg" alt="Haedeulmun Form Process" class="process-img">
+            <p class="process-desc">
+                전통 건축의 처마 선과 유기적인 곡선을 구조적 안정성과 결합하는 과정을 거쳐, 풍부한 볼륨감과 개방감을 동시에 갖춘 최종 조형태를 도출해 냈습니다.
+            </p>
+        </div>
+
+        <!-- 3. 공간 연출 및 야간 조명 갤러리 -->
+        <div class="concept-block" id="gallery">
+            <div class="section-header">
+                <h2>SPATIAL EXPRESSION & LIGHTING</h2>
+                <p>Night Scapes & Detail Views</p>
+            </div>
+            <p class="process-desc">
+                주간에는 주변 자연경관과 조화롭게 어우러지며, 야간에는 조명 연출을 통해 밀양의 밤하늘 아래 빛의 관문으로서 압도적인 시각적 임팩트를 완성합니다.
+            </p>
+            <div class="gallery-grid">
+                <div class="gallery-box" style="background-image: url('images/haedeulmun-night1.jpg');"></div>
+                <div class="gallery-box" style="background-image: url('images/haedeulmun-night2.jpg');"></div>
+            </div>
+        </div>
+
+        <div class="page-bottom">
+            <a href="portfolio.html" class="back-link">← Return to Portfolio Index</a>
+        </div>
+    </main>
+
+    <footer style="background: #ffffff; padding: 40px; text-align: center; color: #666; font-size: 0.85rem; border-top: 1px solid #e5e5df;">
+        <p style="margin: 0 0 10px 0; color: #666;">Email: ghenwlwl@naver.com | GitHub: github.com/rich24945316-oss</p>
+        <p style="margin: 0; color: #666;">© 2026 Park Ji Beom. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

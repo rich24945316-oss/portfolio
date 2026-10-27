@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | 박지범</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.subpage {
+            background-color: #ffffff;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        #portfolio-list { padding: 80px 40px 120px 40px; max-width: 1400px; margin: 0 auto; text-align: center; }
+        .page-title { font-size: 3rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -0.02em; }
+
+        .filter-tabs { margin: 30px 0 60px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .filter-tabs button { 
+            padding: 10px 24px; 
+            border: 1px solid #111; 
+            background: #fff; 
+            cursor: pointer; 
+            border-radius: 0; 
+            font-family: inherit; 
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s; 
+        }
+        .filter-tabs button:hover { background: #f0f0f0; }
+        .filter-tabs button.active { background: #111; color: #fff; border-color: #111; }
+
+        /* 섹션 구분 타이틀 및 그리드 간격 스타일 */
+        .section-group-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: left;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+            color: #111;
+        }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        
+        .card { border: 1px solid #e2e8f0; border-radius: 0; overflow: hidden; text-align: left; transition: transform 0.3s, box-shadow 0.3s; background: #fff; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card-img { height: 240px; background-size: cover; background-position: center; background-color: #f7fafc; border-bottom: 1px solid #e2e8f0; }
+        .card h3 { padding: 20px 20px 5px 20px; font-size: 1.3rem; font-weight: 800; }
+        .card p { padding: 0 20px 20px 20px; color: #666; font-size: 0.95rem; }
+
+        /* 메인작과 개인작을 확실하게 갈라주는 스타일리시한 구분선 */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background-color: #cbd5e0;
+            margin: 80px 0 60px 0;
+            position: relative;
+        }
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            left: 0; top: -2px;
+            width: 60px; height: 5px;
+            background-color: #111; /* 상단 강조 바 */
+        }
+
+        /* 모달 팝업창 디자인 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(5, 11, 20, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 50px;
+            border-radius: 0;
+            max-width: 650px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border: 1px solid #111;
+        }
+        .modal-img {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+        }
+        .modal-content h3 { font-size: 2rem; margin-bottom: 10px; font-weight: 800; }
+        .modal-content p { font-size: 1rem; color: #666; margin-bottom: 0; }
+        .close-btn {
+            position: absolute;
+            top: 20px; right: 25px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+        .card.personal-card { cursor: pointer; }
+    </style>
+</head>
+<body class="subpage">
+    <header>
+        <div class="logo"><a href="index.html">PARK JI BEOM</a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="portfolio-list">
+        <h1 class="page-title">All Projects</h1>
+        
+        <div class="filter-tabs">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="transportation">Transportation</button>
+            <button data-filter="spatial">Spatial</button>
+            <button data-filter="product">Product</button>
+            <button data-filter="personal">Personal / Prototyping</button>
+        </div>
+        
+        <!-- 그룹 1: 메인 대표작 3종 -->
+        <div class="project-group" data-group="major">
+            <h2 class="section-group-title">Featured Major Projects</h2>
+            <div class="grid">
+                <div class="card theme-luxury" data-category="transportation" onclick="location.href='storia.html'">
+                    <div class="card-img" style="background-image: url('images/storia.jpg');"></div>
+                    <h3>STORIA</h3>
+                    <p>Luxury Super Yacht</p>
+                </div>
+                <div class="card theme-clean" data-category="spatial" onclick="location.href='haedeulmun.html'">
+                    <div class="card-img" style="background-image: url('images/haedeulmun.jpg');"></div>
+                    <h3>HAEDEULMUN</h3>
+                    <p>Milyang Tollgate Landscape Design</p>
+                </div>
+                <div class="card theme-tech" data-category="product" onclick="location.href='launcher.html'">
+                    <div class="card-img" style="background-image: url('images/fs-launcher.jpg');"></div>
+                    <h3>F.S. Launcher</h3>
+                    <p>Professional Rescue Equipment</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 세련된 시각적 구분선 -->
+        <hr class="section-divider">
+
+        <!-- 그룹 2: 개인작품 및 프로토타이핑 4종 -->
+        <div class="project-group" data-group="personal">
+            <h2 class="section-group-title">Personal & Prototyping Works</h2>
+            <div class="grid">
+                <div class="card theme-personal personal-card" data-category="personal" 
+                     data-title="Character Figure Study" 
+                     data-desc="3D Modeling, Printing & Painting (Jack Frost)" 
+                     data-img="images/jack-frost.jpg">
+                    <div class="card-img" style="background-image: url('images/jack-frost.jpg');"></div>
+                    <h3>Character Figure Study</h3>
+                    <p>3D Modeling, Printing & Painting</p>
+                </div>
+
+                <div class="card theme-personal personal-card" data-category="personal" 
+                     data-title="Articulated Pug Figure" 
+                     data-desc="3D Printing & Surface Finishing (Model sourced externally)" 
+                     data-img="images/pug-figure.jpg">
+                    <div class="card-img" style="background-image: url('images/pug-figure.jpg');"></div>
+                    <h3>Articulated Pug Figure</h3>
+                    <p>3D Printing & Surface Finishing</p>
+                </div>
+                
+                <div class="card theme-personal personal-card" data-category="personal" 
+                     data-title="Mechanical Prop Replica" 
+                     data-desc="Metallic Painting & Finishing Study (Fullmetal Alchemist Pocket Watch)" 
+                     data-img="images/pocket-watch.jpg">
+                    <div class="card-img" style="background-image: url('images/pocket-watch.jpg');"></div>
+                    <h3>Mechanical Prop Replica</h3>
+                    <p>Metallic Painting & Finishing Study</p>
+                </div>
+
+                <div class="card theme-personal personal-card" data-category="personal" 
+                     data-title="Character Toy Prototyping" 
+                     data-desc="Gloss Coating & Post-Processing (Patamon Roly-poly)" 
+                     data-img="images/patamon-roly.jpg">
+                    <div class="card-img" style="background-image: url('images/patamon-roly.jpg');"></div>
+                    <h3>Character Toy Prototyping</h3>
+                    <p>Gloss Coating & Post-Processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 모달 팝업 구조 -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-img" id="modalImg"></div>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 40px; background: #111; color: #fff; font-size: 0.85rem;">
+        <p style="margin-bottom: 10px; color: #ccc;">Email: ghenwlwl@naver.com | GitHub: github.com/rich24945316-oss</p>
+        <p>© 2026 Park Ji Beom. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 필터링 기능 (그룹 단위로 연동)
+            const filterBtns = document.querySelectorAll('.filter-tabs button');
+            const majorGroup = document.querySelector('.project-group[data-group="major"]');
+            const personalGroup = document.querySelector('.project-group[data-group="personal"]');
+            const divider = document.querySelector('.section-divider');
+            const allCards = document.querySelectorAll('.grid .card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    if (filterValue === 'all') {
+                        majorGroup.style.display = 'block';
+                        personalGroup.style.display = 'block';
+                        divider.style.display = 'block';
+                        allCards.forEach(card => card.style.display = 'block');
+                    } else if (filterValue === 'personal') {
+                        majorGroup.style.display = 'none';
+                        divider.style.display = 'none';
+                        personalGroup.style.display = 'block';
+                        allCards.forEach(card => {
+                            if (card.getAttribute('data-category') === 'personal') {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    } else {
+                        // Transportation, Spatial, Product 등 메인 카테고리 선택 시
+                        personalGroup.style.display = 'none';
+                        divider.style.display = 'none';
+                        majorGroup.style.display = 'block';
+                        allCards.forEach(card => {
+                            const cat = card.getAttribute('data-category');
+                            if (cat === filterValue) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+
+            // 모달 팝업 제어
+            const modal = document.getElementById('projectModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const closeBtn = document.querySelector('.close-btn');
+            const personalCards = document.querySelectorAll('.personal-card');
+
+            personalCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const title = card.getAttribute('data-title');
+                    const desc = card.getAttribute('data-desc');
+                    const imgSrc = card.getAttribute('data-img');
+
+                    modalTitle.textContent = title;
+                    modalDesc.textContent = desc;
+                    modalImg.style.backgroundImage = `url('${imgSrc}')`;
+                    
+                    modal.style.display = 'flex';
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
