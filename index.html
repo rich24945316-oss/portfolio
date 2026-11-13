@@ -14,6 +14,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#comment-section">Feedback</a></li>
             </ul>
         </nav>
     </header>
@@ -173,9 +174,109 @@
         </div>
     </section>
 
+    <!-- 교수님 피드백용 실시간 댓글 창 섹션 -->
+    <section id="comment-section" style="max-width: 900px; margin: 60px auto; padding: 30px; background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 20px; font-size: 24px; color: #111;">교수님 피드백 댓글 창</h3>
+        
+        <!-- 댓글 목록 출력 영역 -->
+        <div id="comment-list" style="margin-bottom: 25px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+            <p style="color: #888; text-align: center; padding: 20px;">등록된 피드백이 없습니다.</p>
+        </div>
+        
+        <!-- 댓글 입력 폼 -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <input type="text" id="comment-name" placeholder="작성자 이름 (예: 정석원 교수님)" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;" />
+            <textarea id="comment-text" placeholder="피드백 내용을 입력하세요..." style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; height: 100px; font-size: 14px; resize: vertical;"></textarea>
+            <button id="comment-submit" style="padding: 12px; background: #111; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">댓글 등록</button>
+        </div>
+    </section>
+
     <footer id="contact">
         <p>Email: ghenwlwl@naver.com | GitHub: github.com/rich24945316-oss</p>
         <p>© 2026 Park Ji Beom. All rights reserved.</p>
     </footer>
+
+    <!-- 파이어베이스 실시간 댓글 기능 스크립트 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        // 네가 제공해 준 파이어베이스 설정값 적용
+        const firebaseConfig = {
+            apiKey: "AIzaSyDQGe1EsbXFqya417oSEdcbBnc-5SQNMXo",
+            authDomain: "portfolio-comments-a845a.firebaseapp.com",
+            projectId: "portfolio-comments-a845a",
+            storageBucket: "portfolio-comments-a845a.firebasestorage.app",
+            messagingSenderId: "959679119040",
+            appId: "1:959679119040:web:5c8c4b2396207f6f903725",
+            measurementId: "G-SBKTP11T2Q"
+        };
+
+        // 파이어베이스 초기화
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        const commentList = document.getElementById('comment-list');
+        const submitBtn = document.getElementById('comment-submit');
+        const nameInput = document.getElementById('comment-name');
+        const textInput = document.getElementById('comment-text');
+
+        // 1. 실시간으로 댓글 목록 불러와서 화면에 렌더링하기
+        const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
+        onSnapshot(q, (snapshot) => {
+            commentList.innerHTML = "";
+            if (snapshot.empty) {
+                commentList.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">등록된 피드백이 없습니다.</p>';
+                return;
+            }
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                const date = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleString() : '방금 전';
+                
+                const div = document.createElement('div');
+                div.style.cssText = "background: #fdfdfd; padding: 15px; border-radius: 8px; border: 1px solid #eaeaea;";
+                div.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                        <strong style="font-size: 15px; color: #333;">${escapeHtml(data.name)}</strong>
+                        <span style="font-size: 12px; color: #888;">${date}</span>
+                    </div>
+                    <p style="margin: 0; font-size: 14px; color: #555; white-space: pre-wrap; line-height: 1.4;">${escapeHtml(data.text)}</p>
+                `;
+                commentList.appendChild(div);
+            });
+        });
+
+        // 2. 댓글 등록 버튼 이벤트
+        submitBtn.addEventListener('click', async () => {
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+
+            if (!name || !text) {
+                alert("이름과 피드백 내용을 모두 입력해 주렴!");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "comments"), {
+                    name: name,
+                    text: text,
+                    createdAt: serverTimestamp()
+                });
+                textInput.value = ""; // 내용 입력창만 비우기
+            } catch (e) {
+                console.error("댓글 저장 중 에러 발생: ", e);
+                alert("댓글 저장에 실패했어.");
+            }
+        });
+
+        // 보안용 HTML 특수문자 변환 함수
+        function escapeHtml(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
 </body>
 </html>
