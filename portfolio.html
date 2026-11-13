@@ -62,7 +62,7 @@
             position: absolute;
             left: 0; top: -2px;
             width: 60px; height: 5px;
-            background-color: #111; /* 상단 강조 바 */
+            background-color: #111;
         }
 
         /* 모달 팝업창 디자인 */
@@ -106,59 +106,24 @@
         }
         .card.personal-card { cursor: pointer; }
         @media (max-width: 768px) {
-    /* 전체 메인 컨테이너 패딩 축소로 모바일 답답함 해소 */
-    .yacht-main, .launcher-main, .project-main {
-        padding: 40px 20px !important;
-    }
-
-    /* 히어로 섹션 타이틀 크기 조정 */
-    .yacht-hero-content h1, 
-    .launcher-hero-content h1, 
-    .project-hero-content h1 {
-        font-size: 2.5rem !important;
-    }
-
-    /* 모든 2단/3단 그리드 레이아웃을 무조건 세로 1단으로 변경 */
-    .spec-layout, 
-    .spec-layout.reverse, 
-    .spec-info-grid, 
-    .blueprint-grid, 
-    .tech-grid, 
-    .concept-grid, 
-    .gallery-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-
-    /* 이미지와 도면들이 화면 밖으로 튀어나가지 않도록 안전장치 */
-    .wide-visual-img, 
-    .blueprint-visual, 
-    .panel-img, 
-    .wide-tech-img {
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    /* 상단 네비게이션바 정렬 간소화 */
-    .yacht-nav, .launcher-nav, .project-nav {
-        padding: 20px !important;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .yacht-nav ul, .launcher-nav ul, .project-nav ul {
-        gap: 20px !important;
-    }
-}
+            .yacht-main, .launcher-main, .project-main { padding: 40px 20px !important; }
+            .yacht-hero-content h1, .launcher-hero-content h1, .project-hero-content h1 { font-size: 2.5rem !important; }
+            .spec-layout, .spec-layout.reverse, .spec-info-grid, .blueprint-grid, .tech-grid, .concept-grid, .gallery-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+            .wide-visual-img, .blueprint-visual, .panel-img, .wide-tech-img { width: 100% !important; height: auto !important; }
+            .yacht-nav, .launcher-nav, .project-nav { padding: 20px !important; flex-direction: column; gap: 15px; }
+            .yacht-nav ul, .launcher-nav ul, .project-nav ul { gap: 20px !important; }
+        }
     </style>
 </head>
 <body class="subpage">
+    <!-- 메인 네비게이션과 완벽하게 일치하도록 통일된 헤더 -->
     <header>
         <div class="logo"><a href="index.html">PARK JI BEOM</a></div>
         <nav>
             <ul>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="portfolio.html" style="font-weight: bold; color: #111;">Portfolio</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
             </ul>
         </nav>
     </header>
@@ -196,7 +161,6 @@
             </div>
         </div>
 
-        <!-- 세련된 시각적 구분선 -->
         <hr class="section-divider">
 
         <!-- 그룹 2: 개인작품 및 프로토타이핑 4종 -->
@@ -259,7 +223,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 필터링 기능 (그룹 단위로 연동)
             const filterBtns = document.querySelectorAll('.filter-tabs button');
             const majorGroup = document.querySelector('.project-group[data-group="major"]');
             const personalGroup = document.querySelector('.project-group[data-group="personal"]');
@@ -290,7 +253,6 @@
                             }
                         });
                     } else {
-                        // Transportation, Spatial, Product 등 메인 카테고리 선택 시
                         personalGroup.style.display = 'none';
                         divider.style.display = 'none';
                         majorGroup.style.display = 'block';
@@ -306,7 +268,6 @@
                 });
             });
 
-            // 모달 팝업 제어
             const modal = document.getElementById('projectModal');
             const modalImg = document.getElementById('modalImg');
             const modalTitle = document.getElementById('modalTitle');
