@@ -6,6 +6,19 @@
     <title>F.S. Launcher | Professional Rescue Equipment</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 인덱스/포트폴리오 기준 일치화 */
+        :root {
+            --accent-orange: #ff6b00;
+        }
+        header nav ul li a.active {
+            font-weight: bold;
+            color: var(--accent-orange) !important;
+        }
+        header nav ul li a:hover {
+            color: var(--accent-orange);
+            transition: color 0.2s ease;
+        }
+
         body.launcher-page {
             background-color: #0b0b0b;
             color: #ffffff;
@@ -42,16 +55,19 @@
             list-style: none;
             margin: 0; padding: 0;
         }
+        /* 메인 index.html과 완전히 동일한 폰트 스타일 및 굵기로 통일 */
         .launcher-nav ul li a {
             color: #888;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.05em;
             transition: color 0.3s;
             text-decoration: none;
+            font-family: inherit;
+            font-weight: 600;
         }
         .launcher-nav ul li a:hover {
-            color: #e63946;
+            color: var(--accent-orange);
         }
 
         .launcher-hero {
@@ -81,7 +97,7 @@
         .launcher-hero-content .subtitle {
             font-size: 0.85rem;
             letter-spacing: 0.25em;
-            color: #e63946;
+            color: var(--accent-orange);
             text-transform: uppercase;
             margin-bottom: 15px;
             display: block;
@@ -103,7 +119,7 @@
         .action-btn {
             display: inline-block;
             padding: 15px 35px;
-            background: #e63946;
+            background: var(--accent-orange);
             color: #fff;
             text-transform: uppercase;
             letter-spacing: 0.15em;
@@ -114,7 +130,7 @@
             text-decoration: none;
         }
         .action-btn:hover {
-            background: #ff4d5a;
+            background: #ff8533;
         }
 
         .launcher-main {
@@ -124,7 +140,7 @@
         }
 
         .section-header {
-            border-left: 3px solid #e63946;
+            border-left: 3px solid var(--accent-orange);
             padding-left: 20px;
             margin-bottom: 40px;
         }
@@ -190,7 +206,7 @@
             text-transform: uppercase;
         }
         .spec-row .value {
-            color: #e63946;
+            color: var(--accent-orange);
             font-size: 1.05rem;
             font-weight: 700;
             font-family: monospace;
@@ -226,7 +242,7 @@
             margin: 0;
         }
 
-        /* 가로로 긴 메커니즘 및 스케치 뷰 (비율 깨짐 방지용 와이드 스타일) */
+        /* 가로로 긴 메커니즘 및 스케치 뷰 */
         .wide-tech-section {
             margin-bottom: 120px;
         }
@@ -272,7 +288,7 @@
             transition: border-color 0.3s;
         }
         .gallery-box:hover {
-            border-color: #e63946;
+            border-color: var(--accent-orange);
         }
 
         .page-bottom {
@@ -294,7 +310,7 @@
             text-decoration: none;
         }
         .back-link:hover {
-            background: #e63946;
+            background: var(--accent-orange);
             color: #fff;
         }
 
@@ -304,63 +320,41 @@
             .launcher-nav { padding: 20px; }
         }
         @media (max-width: 768px) {
-    /* 전체 메인 컨테이너 패딩 축소로 모바일 답답함 해소 */
-    .yacht-main, .launcher-main, .project-main {
-        padding: 40px 20px !important;
-    }
-
-    /* 히어로 섹션 타이틀 크기 조정 */
-    .yacht-hero-content h1, 
-    .launcher-hero-content h1, 
-    .project-hero-content h1 {
-        font-size: 2.5rem !important;
-    }
-
-    /* 모든 2단/3단 그리드 레이아웃을 무조건 세로 1단으로 변경 */
-    .spec-layout, 
-    .spec-layout.reverse, 
-    .spec-info-grid, 
-    .blueprint-grid, 
-    .tech-grid, 
-    .concept-grid, 
-    .gallery-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-
-    /* 이미지와 도면들이 화면 밖으로 튀어나가지 않도록 안전장치 */
-    .wide-visual-img, 
-    .blueprint-visual, 
-    .panel-img, 
-    .wide-tech-img {
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    /* 상단 네비게이션바 정렬 간소화 */
-    .yacht-nav, .launcher-nav, .project-nav {
-        padding: 20px !important;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .yacht-nav ul, .launcher-nav ul, .project-nav ul {
-        gap: 20px !important;
-    }
-}
+            .yacht-main, .launcher-main, .project-main {
+                padding: 40px 20px !important;
+            }
+            .launcher-hero-content h1 {
+                font-size: 2.5rem !important;
+            }
+            .blueprint-grid, .spec-info-grid, .gallery-grid, .concept-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .blueprint-visual, .wide-tech-img {
+                width: 100% !important;
+                height: auto !important;
+            }
+            .launcher-nav {
+                padding: 20px !important;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .launcher-nav ul {
+                gap: 20px !important;
+            }
+        }
     </style>
 </head>
 <body class="launcher-page">
 
+    <!-- 통일된 상단 헤더 (F.S. LAUNCHER 브랜드 타이틀 및 HOME, PORTFOLIO, FEEDBACK 메뉴) -->
     <header class="launcher-nav">
-        <div class="brand"><a href="index.html" style="color: #fff; text-decoration: none;">F.S. LABS</a></div>
+        <div class="brand">F.S. LAUNCHER</div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="#blueprint">Blueprint</a></li>
-                <li><a href="#action-scene">Deployment</a></li>
-                <li><a href="#mechanism">Mechanism</a></li>
-                <li><a href="#details">Details</a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="feedback.html">FEEDBACK</a></li>
             </ul>
         </nav>
     </header>
@@ -376,7 +370,7 @@
 
     <main class="launcher-main">
         
-        <!-- 1. 선화 도면(7.jpg) 및 정식 제원 스펙 표 (860mm 등 반영) -->
+        <!-- 1. 선화 도면 및 정식 제원 스펙 표 -->
         <div class="blueprint-section" id="blueprint">
             <div class="section-header">
                 <h2>TECHNICAL SPECIFICATIONS & BLUEPRINT</h2>
@@ -418,7 +412,7 @@
             </div>
         </div>
 
-        <!-- 2. 실전 운용 시나리오 섹션 (6.jpg) -->
+        <!-- 2. 실전 운용 시나리오 섹션 -->
         <div class="action-scene-section" id="action-scene">
             <div class="section-header">
                 <h2>OPERATIONAL DEPLOYMENT</h2>
@@ -433,27 +427,25 @@
             </div>
         </div>
 
-        <!-- 3. 메커니즘 및 설계 스케치 (비율 깨짐 없는 와이드 이미지 배치) -->
+        <!-- 3. 메커니즘 및 설계 스케치 -->
         <div class="section-header" id="mechanism">
             <h2>MECHANICAL ARCHITECTURE & SKETCHES</h2>
             <p>Kinematics & Form Study</p>
         </div>
 
-        <!-- 4.jpg: 개머리판 전개 과정 (와이드형태로 비율 보존) -->
         <div class="wide-tech-section">
             <img src="images/launcher-mechanism.jpg" alt="Stock Deployment Kinematics" class="wide-tech-img">
             <div class="wide-tech-desc">
                 <h3>Stock Deployment Kinematics</h3>
-                <p>개머리판(Stock)의 폴딩 및 디플로잉 메커니즘을 통해 휴대성을 높이고, 현장 전개 시 신속하게 고정될 수 있도록 설계된 기구부 구조야.</p>
+                <p>개머리판(Stock)의 폴딩 및 디플로잉 메커니즘을 통해 휴대성을 높이고, 현장 전개 시 신속하게 고정될 수 있도록 설계된 기구부 구조입니다.</p>
             </div>
         </div>
 
-        <!-- 5.jpg: 컴포넌트 형태 스케치 (와이드형태로 비율 보존) -->
         <div class="wide-tech-section">
             <img src="images/launcher-sketch.jpg" alt="Component Form Study" class="wide-tech-img">
             <div class="wide-tech-desc">
                 <h3>Component Form Study</h3>
-                <p>주요 조작부 및 모듈러 결합 부위의 정밀한 형태 스케치로, 공학적 타당성과 조형적 완성도를 동시에 검토한 결과물이지.</p>
+                <p>주요 조작부 및 모듈러 결합 부위의 정밀한 형태 스케치로, 공학적 타당성과 조형적 완성도를 동시에 검토한 결과물입니다.</p>
             </div>
         </div>
 

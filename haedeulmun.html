@@ -6,6 +6,19 @@
     <title>HAEDEULMUN | Milyang Tollgate Landscape Design</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 인덱스/포트폴리오 기준 일치화 */
+        :root {
+            --accent-orange: #ff6b00;
+        }
+        header nav ul li a.active {
+            font-weight: bold;
+            color: var(--accent-orange) !important;
+        }
+        header nav ul li a:hover {
+            color: var(--accent-orange);
+            transition: color 0.2s ease;
+        }
+
         body.haedeulmun-page {
             background-color: #f7f7f5;
             color: #2b2b2b;
@@ -39,16 +52,19 @@
             list-style: none;
             margin: 0; padding: 0;
         }
+        /* 메인 index.html과 완전히 동일한 폰트 스타일 및 굵기로 통일 */
         .project-nav ul li a {
             color: #666;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             transition: color 0.3s;
             text-decoration: none;
+            font-family: inherit;
+            font-weight: 600;
         }
         .project-nav ul li a:hover {
-            color: #111;
+            color: var(--accent-orange);
         }
 
         /* 메인 히어로 배너 */
@@ -80,7 +96,7 @@
         .project-hero-content .subtitle {
             font-size: 0.85rem;
             letter-spacing: 0.2em;
-            color: #d1b18d;
+            color: var(--accent-orange);
             text-transform: uppercase;
             margin-bottom: 10px;
             display: block;
@@ -107,7 +123,7 @@
         }
 
         .section-header {
-            border-left: 3px solid #2b2b2b;
+            border-left: 3px solid var(--accent-orange);
             padding-left: 20px;
             margin-bottom: 40px;
         }
@@ -204,7 +220,7 @@
             transition: background 0.3s;
         }
         .back-link:hover {
-            background: #555;
+            background: var(--accent-orange);
         }
 
         @media (max-width: 1024px) {
@@ -215,62 +231,43 @@
         }
 
         @media (max-width: 768px) {
-    /* 전체 메인 컨테이너 패딩 축소로 모바일 답답함 해소 */
-    .yacht-main, .launcher-main, .project-main {
-        padding: 40px 20px !important;
-    }
-
-    /* 히어로 섹션 타이틀 크기 조정 */
-    .yacht-hero-content h1, 
-    .launcher-hero-content h1, 
-    .project-hero-content h1 {
-        font-size: 2.5rem !important;
-    }
-
-    /* 모든 2단/3단 그리드 레이아웃을 무조건 세로 1단으로 변경 */
-    .spec-layout, 
-    .spec-layout.reverse, 
-    .spec-info-grid, 
-    .blueprint-grid, 
-    .tech-grid, 
-    .concept-grid, 
-    .gallery-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-
-    /* 이미지와 도면들이 화면 밖으로 튀어나가지 않도록 안전장치 */
-    .wide-visual-img, 
-    .blueprint-visual, 
-    .panel-img, 
-    .wide-tech-img {
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    /* 상단 네비게이션바 정렬 간소화 */
-    .yacht-nav, .launcher-nav, .project-nav {
-        padding: 20px !important;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .yacht-nav ul, .launcher-nav ul, .project-nav ul {
-        gap: 20px !important;
-    }
-}
+            .yacht-main, .launcher-main, .project-main {
+                padding: 40px 20px !important;
+            }
+            .yacht-hero-content h1, 
+            .launcher-hero-content h1, 
+            .project-hero-content h1 {
+                font-size: 2.5rem !important;
+            }
+            .spec-layout, .spec-layout.reverse, .spec-info-grid, .blueprint-grid, .tech-grid, .concept-grid, .gallery-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .wide-visual-img, .blueprint-visual, .panel-img, .wide-tech-img, .process-img {
+                width: 100% !important;
+                height: auto !important;
+            }
+            .yacht-nav, .launcher-nav, .project-nav {
+                padding: 20px !important;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .yacht-nav ul, .launcher-nav ul, .project-nav ul {
+                gap: 20px !important;
+            }
+        }
     </style>
 </head>
 <body class="haedeulmun-page">
 
+    <!-- 통일된 상단 헤더 (HAEDEULMUN 브랜드 타이틀 및 HOME, PORTFOLIO, FEEDBACK 메뉴) -->
     <header class="project-nav">
-        <div class="brand"><a href="index.html" style="color: #111; text-decoration: none;">PARK JI BEOM</a></div>
+        <div class="brand">HAEDEULMUN</div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="#concept">Concept</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="feedback.html">FEEDBACK</a></li>
             </ul>
         </nav>
     </header>
@@ -311,7 +308,6 @@
                 <h2>FORM EVOLUTION PROCESS</h2>
                 <p>From Concept to Structure</p>
             </div>
-            <!-- 형태 프로세스 도면/다이어그램 이미지 -->
             <img src="images/haedeulmun-process.jpg" alt="Haedeulmun Form Process" class="process-img">
             <p class="process-desc">
                 전통 건축의 처마 선과 유기적인 곡선을 구조적 안정성과 결합하는 과정을 거쳐, 풍부한 볼륨감과 개방감을 동시에 갖춘 최종 조형태를 도출해 냈습니다.
