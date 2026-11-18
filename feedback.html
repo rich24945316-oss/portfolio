@@ -6,9 +6,25 @@
     <title>Feedback & Guestbook | 박지범 포트폴리오</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 피드백 페이지 전용 추가 스타일 (메인과 톤앤매너 일치) */
+        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 인덱스/포트폴리오 기준 일치화 */
+        :root {
+            --accent-orange: #ff6b00;
+        }
+        header nav ul li a.active {
+            font-weight: bold;
+            color: var(--accent-orange) !important;
+        }
+        header nav ul li a:hover {
+            color: var(--accent-orange);
+            transition: color 0.2s ease;
+        }
+
         body {
-            background-color: #fafafa;
+            background-color: #ffffff;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
             color: #111;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
@@ -22,30 +38,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
         .feedback-container {
             width: 100%;
             max-width: 800px;
             background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 12px;
+            border: 1px solid #111;
+            border-radius: 0;
             padding: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
         .feedback-header {
             margin-bottom: 30px;
             text-align: center;
         }
         .feedback-header h2 {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             margin-bottom: 10px;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02em;
         }
         .feedback-header p {
             color: #666;
-            font-size: 15px;
+            font-size: 0.95rem;
         }
         #comment-list {
             margin-bottom: 30px;
@@ -59,26 +75,27 @@
         .comment-card {
             background: #fdfdfd;
             padding: 18px;
-            border-radius: 8px;
-            border: 1px solid #eaeaea;
+            border-radius: 0;
+            border: 1px solid #e2e8f0;
+            border-left: 3px solid var(--accent-orange);
         }
         .comment-info {
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 0.9rem;
         }
         .comment-name {
-            font-weight: 600;
-            color: #222;
+            font-weight: 700;
+            color: #111;
         }
         .comment-date {
             color: #888;
-            font-size: 12px;
+            font-size: 0.8rem;
         }
         .comment-text {
             margin: 0;
-            font-size: 14px;
+            font-size: 0.95rem;
             color: #444;
             white-space: pre-wrap;
             line-height: 1.5;
@@ -91,13 +108,14 @@
         .form-group input, .form-group textarea {
             padding: 14px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 0;
+            font-size: 0.95rem;
             outline: none;
             transition: border-color 0.2s;
+            font-family: inherit;
         }
         .form-group input:focus, .form-group textarea:focus {
-            border-color: #111;
+            border-color: var(--accent-orange);
         }
         .form-group textarea {
             height: 120px;
@@ -108,26 +126,26 @@
             background: #111;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
+            border-radius: 0;
+            font-size: 0.95rem;
+            font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
         }
         .submit-btn:hover {
-            background: #333;
+            background: var(--accent-orange);
         }
     </style>
 </head>
 <body>
-    <!-- 메인 네비게이션과 완벽하게 일치하도록 통일된 헤더 -->
+    <!-- 메인/포트폴리오와 완벽하게 일치하는 상단 헤더 (대문자 메뉴 및 active 클래스 적용) -->
     <header>
-        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">PARK JI BEOM</a></div>
+        <div class="logo">PARK JI BEOM</div>
         <nav>
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="portfolio.html">PORTFOLIO</a></li>
-                <li><a href="feedback.html" style="font-weight: bold; color: #111;">FEEDBACK</a></li>
+                <li><a href="feedback.html" class="active">FEEDBACK</a></li>
             </ul>
         </nav>
     </header>
@@ -153,7 +171,7 @@
         </div>
     </main>
 
-    <footer style="padding: 30px 0; text-align: center; border-top: 1px solid #eaeaea;">
+    <footer style="padding: 30px 0; text-align: center; border-top: 1px solid #cbd5e0; background: #fff;">
         <p style="font-size: 13px; color: #666;">Email: ghenwlwl@naver.com | GitHub: github.com/rich24945316-oss</p>
         <p style="font-size: 13px; color: #888; margin-top: 5px;">© 2026 Park Ji Beom. All rights reserved.</p>
     </footer>
