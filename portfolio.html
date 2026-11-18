@@ -6,7 +6,7 @@
     <title>Portfolio | 박지범</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 적용 */
+        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 인덱스 기준 일치화 */
         :root {
             --accent-orange: #ff6b00;
         }
@@ -27,9 +27,24 @@
             background-size: 40px 40px;
         }
         #portfolio-list { padding: 80px 40px 120px 40px; max-width: 1400px; margin: 0 auto; text-align: center; }
-        .page-title { font-size: 3rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -0.02em; }
+        
+        /* 페이지 타이틀에도 인덱스 감성을 이어받은 오렌지 포인트 뱃지/포인트 가미 */
+        .page-title { 
+            font-size: 3rem; 
+            font-weight: 900; 
+            margin-bottom: 10px; 
+            letter-spacing: -0.02em; 
+        }
+        .page-subtitle-desc {
+            color: var(--accent-orange);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
 
-        .filter-tabs { margin: 30px 0 60px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .filter-tabs { margin: 20px 0 60px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
         .filter-tabs button { 
             padding: 10px 24px; 
             border: 1px solid #111; 
@@ -41,7 +56,7 @@
             font-weight: 600;
             transition: all 0.2s; 
         }
-        .filter-tabs button:hover { background: #f0f0f0; }
+        .filter-tabs button:hover { background: #f0f0f0; color: var(--accent-orange); border-color: var(--accent-orange); }
         .filter-tabs button.active { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
 
         .section-group-title {
@@ -51,12 +66,14 @@
             margin-bottom: 25px;
             letter-spacing: 0.05em;
             color: #111;
+            border-left: 4px solid var(--accent-orange);
+            padding-left: 15px;
         }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px; }
         
         .card { border: 1px solid #e2e8f0; border-radius: 0; overflow: hidden; text-align: left; transition: transform 0.3s, box-shadow 0.3s; background: #fff; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255,107,0,0.1); border-color: var(--accent-orange); }
         .card-img { height: 240px; background-size: cover; background-position: center; background-color: #f7fafc; border-bottom: 1px solid #e2e8f0; }
         .card h3 { padding: 20px 20px 5px 20px; font-size: 1.3rem; font-weight: 800; }
         .card p { padding: 0 20px 20px 20px; color: #666; font-size: 0.95rem; }
@@ -146,7 +163,7 @@
 </head>
 <body class="subpage">
     <header>
-        <div class="logo"><a href="index.html">PARK JI BEOM</a></div>
+        <div class="logo">PARK JI BEOM</div>
         <nav>
             <ul>
                 <li><a href="index.html">HOME</a></li>
@@ -158,6 +175,7 @@
 
     <section id="portfolio-list">
         <h1 class="page-title">All Projects</h1>
+        <p class="page-subtitle-desc">Complete Archive of Major Projects & Prototyping Works</p>
         
         <div class="filter-tabs">
             <button class="active" data-filter="all">All</button>
