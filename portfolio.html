@@ -6,6 +6,19 @@
     <title>Portfolio | 박지범</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 적용 */
+        :root {
+            --accent-orange: #ff6b00;
+        }
+        header nav ul li a.active {
+            font-weight: bold;
+            color: var(--accent-orange) !important;
+        }
+        header nav ul li a:hover {
+            color: var(--accent-orange);
+            transition: color 0.2s ease;
+        }
+
         body.subpage {
             background-color: #ffffff;
             background-image: 
@@ -29,7 +42,7 @@
             transition: all 0.2s; 
         }
         .filter-tabs button:hover { background: #f0f0f0; }
-        .filter-tabs button.active { background: #111; color: #fff; border-color: #111; }
+        .filter-tabs button.active { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
 
         .section-group-title {
             font-size: 1.5rem;
@@ -60,7 +73,7 @@
             position: absolute;
             left: 0; top: -2px;
             width: 60px; height: 5px;
-            background-color: #111;
+            background-color: var(--accent-orange);
         }
 
         /* 공통 모달 팝업창 디자인 */
@@ -113,7 +126,7 @@
             font-size: 0.9rem;
             transition: background 0.2s;
         }
-        .slider-btn:hover { background: #333; }
+        .slider-btn:hover { background: var(--accent-orange); }
         .slider-indicator { font-size: 0.9rem; font-weight: 600; color: #555; }
 
         .close-btn {
@@ -124,6 +137,7 @@
             cursor: pointer;
             color: #333;
         }
+        .close-btn:hover { color: var(--accent-orange); }
 
         @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; }
@@ -136,8 +150,8 @@
         <nav>
             <ul>
                 <li><a href="index.html">HOME</a></li>
-                <li><a href="portfolio.html" style="font-weight: bold; color: #111;">Portfolio</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="portfolio.html" class="active">PORTFOLIO</a></li>
+                <li><a href="feedback.html">FEEDBACK</a></li>
             </ul>
         </nav>
     </header>
@@ -191,7 +205,7 @@
                     <p>Rhino 3D Modeling & Mechanical Design Study</p>
                 </div>
 
-                <!-- 2. 캐릭터 피규어 스터디 (Jack Frost) - 기존 전용 모달 -->
+                <!-- 2. 캐릭터 피규어 스터디 (Jack Frost) -->
                 <div class="card personal-card" data-category="personal" 
                      data-title="Character Figure Study" 
                      data-desc="3D Modeling, Printing & Painting (Jack Frost)" 
@@ -201,7 +215,7 @@
                     <p>3D Modeling, Printing & Painting</p>
                 </div>
 
-                <!-- 3. 치이카와 피규어 페인팅 (신규 추가) -->
+                <!-- 3. 치이카와 피규어 페인팅 -->
                 <div class="card personal-card" data-category="personal" 
                      data-title="Chiikawa Figure Painting Study" 
                      data-desc="3D Printing, Surface Smoothing & Hand-Painting (Model sourced externally)" 
