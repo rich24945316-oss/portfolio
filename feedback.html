@@ -6,7 +6,6 @@
     <title>Feedback & Guestbook | 박지범 포트폴리오</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 미니멀한 산디 오렌지 포인트 스타일 변수 및 인덱스/포트폴리오 기준 일치화 */
         :root {
             --accent-orange: #ff6b00;
         }
@@ -26,7 +25,7 @@
                 linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             color: #111;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -37,53 +36,62 @@
             flex: 1;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 80px 20px;
+            align-items: flex-start;
+            padding: 70px 40px;
         }
-        .feedback-container {
+
+        /* 방명록과 업데이트 로그를 나란히 배치하는 2단 컨테이너 */
+        .feedback-wrapper {
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* 왼쪽: 기존 피드백 & 방명록 박스 */
+        .feedback-container {
             background: #fff;
             border: 1px solid #111;
-            border-radius: 0;
             padding: 40px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
         }
         .feedback-header {
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
         }
         .feedback-header h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin: 0 0 8px 0;
             letter-spacing: -0.02em;
         }
         .feedback-header p {
             color: #666;
             font-size: 0.95rem;
+            margin: 0;
         }
         #comment-list {
-            margin-bottom: 30px;
-            max-height: 450px;
+            margin-bottom: 25px;
+            max-height: 400px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
             padding-right: 5px;
         }
         .comment-card {
             background: #fdfdfd;
-            padding: 18px;
-            border-radius: 0;
+            padding: 16px;
             border: 1px solid #e2e8f0;
-            /* 오렌지 포인트를 주어 작성된 방명록의 가독성과 아이덴티티 강조 */
             border-left: 3px solid var(--accent-orange);
         }
         .comment-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 0.9rem;
         }
         .comment-name {
@@ -104,23 +112,21 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
         .form-group input, .form-group textarea {
             padding: 14px;
             border: 1px solid #ddd;
-            border-radius: 0;
             font-size: 0.95rem;
             outline: none;
             transition: border-color 0.2s;
             font-family: inherit;
         }
-        /* 입력창 포커스 시 산디 오렌지 컬러로 반응 */
         .form-group input:focus, .form-group textarea:focus {
             border-color: var(--accent-orange);
         }
         .form-group textarea {
-            height: 120px;
+            height: 100px;
             resize: vertical;
         }
         .submit-btn {
@@ -128,20 +134,108 @@
             background: #111;
             color: white;
             border: none;
-            border-radius: 0;
             font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
         }
-        /* 버튼에 마우스 올렸을 때 오렌지 포인트로 전환 */
         .submit-btn:hover {
             background: var(--accent-orange);
+        }
+
+        /* 오른쪽: 일자별 업데이트 로그(Update Log) 패널 */
+        .update-log-container {
+            background: #fafafa;
+            border: 1px solid #111;
+            border-top: 4px solid var(--accent-orange);
+            padding: 35px;
+            position: sticky;
+            top: 100px;
+        }
+        .update-log-header {
+            margin-bottom: 25px;
+        }
+        .update-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .update-log-header h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            color: #111;
+        }
+        .update-log-header p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .log-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-left: 2px solid #ddd;
+            padding-left: 18px;
+            margin-left: 5px;
+        }
+        .log-item {
+            position: relative;
+        }
+        .log-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border: 2px solid var(--accent-orange);
+            border-radius: 50%;
+        }
+        .log-item.latest::before {
+            background: var(--accent-orange);
+        }
+        .log-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .log-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111;
+            margin: 0 0 6px 0;
+        }
+        .log-desc {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            margin: 0;
+            padding-left: 14px;
+        }
+        .log-desc li {
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 960px) {
+            .feedback-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .update-log-container {
+                position: static;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 메인/포트폴리오와 완벽하게 일치하는 상단 헤더 -->
     <header>
         <div class="logo">PARK JI BEOM</div>
         <nav>
@@ -154,23 +248,54 @@
     </header>
 
     <main>
-        <div class="feedback-container">
-            <div class="feedback-header">
-                <h2>Visitor Feedback & Guestbook</h2>
-                <p>포트폴리오에 대한 자유로운 피드백이나 방명록을 남겨주세요.</p>
+        <div class="feedback-wrapper">
+            <!-- 1. 왼쪽: 기존 피드백 댓글창 (전혀 가려지지 않고 온전히 기능함) -->
+            <div class="feedback-container">
+                <div class="feedback-header">
+                    <h2>Visitor Feedback & Guestbook</h2>
+                    <p>포트폴리오에 대한 피드백이나 의견을 자유롭게 남겨주세요.</p>
+                </div>
+                
+                <div id="comment-list">
+                    <p style="color: #888; text-align: center; padding: 30px;">등록된 코멘트가 없습니다.</p>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="comment-name" placeholder="이름 또는 소속" />
+                    <textarea id="comment-text" placeholder="자유로운 피드백이나 내용을 남겨주세요..."></textarea>
+                    <button id="comment-submit" class="submit-btn">코멘트 남기기</button>
+                </div>
             </div>
-            
-            <!-- 댓글 목록 영역 -->
-            <div id="comment-list">
-                <p style="color: #888; text-align: center; padding: 30px;">등록된 코멘트가 없습니다.</p>
-            </div>
-            
-            <!-- 댓글 작성 폼 -->
-            <div class="form-group">
-                <input type="text" id="comment-name" placeholder="이름 또는 소속" />
-                <textarea id="comment-text" placeholder="자유로운 피드백이나 내용을 남겨주세요..."></textarea>
-                <button id="comment-submit" class="submit-btn">코멘트 남기기</button>
-            </div>
+
+            <!-- 2. 오른쪽: 교수님이 바로 확인 가능한 일자별 업데이트 내역 -->
+            <aside class="update-log-container">
+                <div class="update-log-header">
+                    <span class="update-badge">Revision History</span>
+                    <h3>Feedback Update Log</h3>
+                    <p>제시해주신 피드백을 바탕으로 개선된 내역입니다.</p>
+                </div>
+
+                <div class="log-timeline">
+                    <div class="log-item latest">
+                        <span class="log-date">2026. 11. 21 (최신)</span>
+                        <h4 class="log-title">시각적 통일성 및 디자이너 아이덴티티 강화</h4>
+                        <ul class="log-desc">
+                            <li>전 페이지 상단 내비게이션(HOME, PORTFOLIO, FEEDBACK) 규격 및 오렌지 포인트 컬러 통일</li>
+                            <li>메인(Home) 하단 자기소개 영역에 모노톤 디자이너 프로필 카드 추가</li>
+                            <li>메인 하단 대표작(STORIA)을 와이드 파노라마 배너 및 그라데이션 레이아웃으로 개선</li>
+                        </ul>
+                    </div>
+
+                    <div class="log-item">
+                        <span class="log-date">2026. 11. 20</span>
+                        <h4 class="log-title">정보 구조(IA) 및 페이지 동선 최적화</h4>
+                        <ul class="log-desc">
+                            <li>메인 페이지 내 중복되던 다중 작품 나열을 정리하고 핵심 대표작 1종(Signature Highlight)으로 압축</li>
+                            <li>개별 프로젝트 상세 페이지(STORIA, 해들문, F.S. Launcher) 상단 이정표 일관화</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
         </div>
     </main>
 
@@ -179,7 +304,7 @@
         <p style="font-size: 13px; color: #888; margin-top: 5px;">© 2026 Park Ji Beom. All rights reserved.</p>
     </footer>
 
-    <!-- 파이어베이스 연동 및 실시간 댓글 스크립트 -->
+    <!-- 기존 파이어베이스 연동 및 실시간 댓글 스크립트 (완벽 유지) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -204,7 +329,6 @@
         const nameInput = document.getElementById('comment-name');
         const textInput = document.getElementById('comment-text');
 
-        // 실시간 댓글 목록 불러오기
         const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
         onSnapshot(q, (snapshot) => {
             commentList.innerHTML = "";
@@ -229,7 +353,6 @@
             });
         });
 
-        // 댓글 등록 이벤트
         submitBtn.addEventListener('click', async () => {
             const name = nameInput.value.trim();
             const text = textInput.value.trim();
